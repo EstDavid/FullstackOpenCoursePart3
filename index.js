@@ -8,6 +8,8 @@ app.use(express.json())
 
 app.use(cors())
 
+app.use(express.static('build'))
+
 // Creating custom token 'data' which returns the request.data stringified objecto from
 // the 'processData' middleware function
 morgan.token('data', (request, response) => request.data)
