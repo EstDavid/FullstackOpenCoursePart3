@@ -1,9 +1,12 @@
 const express = require('express')
 const morgan = require('morgan')
+const cors  = require('cors')
 
 const app = express()
 
 app.use(express.json())
+
+app.use(cors())
 
 // Creating custom token 'data' which returns the request.data stringified objecto from
 // the 'processData' middleware function
@@ -28,6 +31,7 @@ app.use(morgan((tokens, request, response) => {
         tokens['response-time'](request, response), 'ms'
     ]
 
+    // When the server receives a 'POST' request, the data of the request is added to the console log
     if (request.method === 'POST') {
         customFormat = customFormat.concat(tokens.data(request, response))
     }
