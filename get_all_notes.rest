@@ -2,6 +2,14 @@ POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-    "name": "Andie Flemmings",
-    "number": "999-5645224"
+    "name": "Andrew Cunnings",
+    "number": "987-9568455"
 }
+
+###
+
+GET http://localhost:3001/api/persons/256
+
+###
+
+DELETE http://localhost:3001/api/persons/8051
