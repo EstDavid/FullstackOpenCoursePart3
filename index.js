@@ -96,27 +96,25 @@ app.post("/api/persons", (request, response) => {
         })
     }
 
-    Person.find({ name: body.name }).then((result) => {
-        if (result[0]) {
-            Person.findByIdAndUpdate(result[0]._id, body, { new: true })
-                .then((updatedPerson) => {
-                    response.json(updatedPerson)
-                })
-                .catch((error) => next(error))
-        } else {
-            const person = new Person({
-                name: body.name,
-                number: body.number,
-            })
-            person
-                .save()
-                .then((savedPerson) => {
-                    console.log("saving")
-                    response.json(savedPerson)
-                })
-                .catch((error) => next(error))
-        }
+    const person = new Person({
+        name: body.name,
+        number: body.number,
     })
+
+    person.save()
+        .then((savedPerson) => {
+            response.json(savedPerson)
+        })
+        .catch((error) => next(error))
+})
+
+app.put('/api/persons/:id', (request, response) => {
+    const body = request.body
+    Person.findByIdAndUpdate(request.params.id, body, { new: true })
+    .then((updatedPerson) => {
+        response.json(updatedPerson)
+    })
+    .catch((error) => next(error))
 })
 
 const unknownEndpoint = (request, response) => {
