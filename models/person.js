@@ -25,7 +25,7 @@ const personSchema = new mongoose.Schema({
         validate: {
             validator: function(v) {
                 return (
-                    /^\d{3}-[0-9]{5,}/.test(v) || /^\d{2}-[0-9]{6,}\b$/.test(v)
+                    /^\d{3}-[0-9]{5,}\b$/.test(v) || /^\d{2}-[0-9]{6,}\b$/.test(v)
                 )
             }
         },
