@@ -2,8 +2,18 @@ POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-    "name": "Mathew Cunnings",
-    "number": "987-9568455"
+    "name": "Timothy Benjanmin",
+    "number": "898-564599"
+}
+
+###
+
+PUT http://localhost:3001/api/persons/63e3c55eee27144cd17884d7
+Content-Type: application/json
+
+{
+    "name": "Andrew Jennings",
+    "number": "1-565459898"
 }
 
 ###
@@ -12,8 +22,15 @@ GET http://localhost:3001/api/persons/
 
 ###
 
-GET https://phonebook-backend-0rm9.onrender.com/api/persons/
+GET https://phonebook-backend-0rm9.onrender.com/api/persons/63e3eb0e0b8c2390acf49ad6
 
 ###
 
-DELETE http://localhost:3001/api/persons/8051
+GET http://localhost:3001/info
+###
+
+GET http://localhost:3001/api/persons/63e4bb4f56406d59acbcf506
+
+###
+
+DELETE http://localhost:3001/api/persons/63e4fdb6d819a897266eae00
