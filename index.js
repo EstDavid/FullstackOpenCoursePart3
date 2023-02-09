@@ -22,7 +22,7 @@ const processData = (request, response, next) => {
 // Using middleware function 'processData', which stringifies the request.body
 app.use(processData)
 
-// Using a custom format function which replicates the output of 
+// Using a custom format function which replicates the output of
 // the 'tiny' format, and adds request data with HTTP POST resquests
 app.use(morgan((tokens, request, response) => {
     let customFormat = [
@@ -46,7 +46,7 @@ app.get('/api/persons', (request, response) => {
     })
 })
 
-app.get("/info", (request, response, next) => {
+app.get('/info', (request, response, next) => {
     Person.find({}).then((people) => {
         const quantityPersons = people.length
         const currentDate = new Date()
@@ -55,9 +55,9 @@ app.get("/info", (request, response, next) => {
         const line2 = `<p>${currentDate}</p>`
 
         const responseArray = [line1, line2]
-        response.send(responseArray.join("\n"))
+        response.send(responseArray.join('\n'))
     })
-    .catch(error => next(error))
+        .catch(error => next(error))
 })
 
 app.get('/api/persons/:id', (request, response, next) => {
@@ -81,18 +81,18 @@ app.delete('/api/persons/:id', (request, response, next) => {
 })
 
 
-app.post("/api/persons", (request, response, next) => {
+app.post('/api/persons', (request, response, next) => {
     const { name, number } = request.body
 
     if (!name) {
         return response.status(400).json({
-            error: "name missing",
+            error: 'name missing',
         })
     }
 
     if (!number) {
         return response.status(400).json({
-            error: "number missing",
+            error: 'number missing',
         })
     }
 
@@ -114,14 +114,14 @@ app.put('/api/persons/:id', (request, response, next) => {
         request.params.id,
         { name, number },
         { new: true, runValidators: true, context: 'query' })
-    .then((updatedPerson) => {
-        response.json(updatedPerson)
-    })
-    .catch((error) => next(error))
+        .then((updatedPerson) => {
+            response.json(updatedPerson)
+        })
+        .catch((error) => next(error))
 })
 
 const unknownEndpoint = (request, response) => {
-    response.status(404).send({ error: "unknown error" })
+    response.status(404).send({ error: 'unknown error' })
 }
 
 app.use(unknownEndpoint)
